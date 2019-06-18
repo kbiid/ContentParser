@@ -1,3 +1,15 @@
 [2019-06-18 14:01:53:193][main] ERROR
 				log.invalid - makeSerializer : 문자열 입력 오류
 [2019-06-18 14:02:48:167][main] ERROR log.invalid - makeSerializer : 문자열 입력 오류
+[2019-06-18 15:12:10:197][main] INFO  log.invalid - 폴더가 이미 존재
+[2019-06-18 15:12:10:252][main] ERROR log.invalid - ByteDeSerializer Exception : java.io.EOFException
+[2019-06-18 15:12:10:256][main] INFO  log.invalid - 폴더가 이미 존재
+[2019-06-18 15:12:10:259][main] ERROR log.invalid - ByteDeSerializer Exception : java.io.EOFException
+[2019-06-18 15:12:35:168][main] INFO  log.invalid - 폴더가 이미 존재
+[2019-06-18 15:12:35:182][main] INFO  log.invalid - 폴더가 이미 존재
+[2019-06-18 15:12:54:161][main] INFO  log.invalid - 폴더가 이미 존재
+[2019-06-18 15:12:54:178][main] INFO  log.invalid - 폴더가 이미 존재
+[2019-06-18 15:13:28:169][main] INFO  log.invalid - 폴더가 이미 존재
+[2019-06-18 15:13:28:219][main] ERROR log.invalid - ByteDeSerializer Exception : java.io.EOFException
+[2019-06-18 15:13:28:222][main] INFO  log.invalid - 폴더가 이미 존재
+[2019-06-18 15:13:28:233][main] ERROR log.invalid - ByteDeSerializer Exception : java.io.EOFException

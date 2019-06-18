@@ -2,8 +2,9 @@ package kr.co.torpedo.fileio;
 
 import java.io.IOException;
 
-import kr.co.torpedo.fileio.deserializer.DeSerializer;
-import kr.co.torpedo.fileio.serializer.Serializer;
+import kr.co.torpedo.fileio.parser.Parser;
+import kr.co.torpedo.fileio.prop.PropertyLoader;
+import kr.co.torpedo.fileio.prop.PropertyReader;
 
 /**
  * 프로그램 실행시키기 위한 메인 클래스
@@ -13,18 +14,22 @@ import kr.co.torpedo.fileio.serializer.Serializer;
  */
 public class Main {
 	public static void main(String[] args) throws IOException {
-		Serializer serializer;
-		DeSerializer deserializer;
+		PropertyLoader propertyLoader = new PropertyLoader();
+		propertyLoader.loadProp("D:/eclipse_workspace/ContentParser/src/main/resources/application.properties");
+		PropertyReader reader = new PropertyReader(propertyLoader.getProperties());
+		Parser parser;
 
-		serializer = SerializerMaker.makeSerializer(args[0]);
-		serializer.serializeEmployee();
+		String format = reader.getFileFormat();
+		String dir = reader.getDir();
+		parser = SerializerMaker.makeSerializer(format, dir);
+		parser.setSawonPath();
+		parser.serializeEmployee();
+		parser.deSerializeEmployee();
+		parser.getDataManager().showEmployeeList();
 
-		deserializer = SerializerMaker.makeDeSerializer(args[0]);
-		deserializer.deSerializeEmployee();
-		deserializer.showEmployeeList();
-
-		serializer.serializeWithIntern();
-		deserializer.deSrializeWithIntern();
-		deserializer.showEmployeeList();
+		parser.setInternPath();
+		parser.serializeWithIntern();
+		parser.deSrializeWithIntern();
+		parser.getDataManager().showEmployeeList();
 	}
 }

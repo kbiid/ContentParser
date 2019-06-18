@@ -1,44 +1,24 @@
 package kr.co.torpedo.fileio;
 
-import kr.co.torpedo.fileio.deserializer.ByteDeSerializer;
-import kr.co.torpedo.fileio.deserializer.CSVDeSerializer;
-import kr.co.torpedo.fileio.deserializer.DeSerializer;
-import kr.co.torpedo.fileio.deserializer.JSONDeSerializer;
-import kr.co.torpedo.fileio.deserializer.XMLDeSerializer;
-import kr.co.torpedo.fileio.serializer.ByteSerializer;
-import kr.co.torpedo.fileio.serializer.CSVSerializer;
-import kr.co.torpedo.fileio.serializer.JSONSerializer;
-import kr.co.torpedo.fileio.serializer.Serializer;
-import kr.co.torpedo.fileio.serializer.XMLSerializer;
+import kr.co.torpedo.fileio.parser.ByteParser;
+import kr.co.torpedo.fileio.parser.CSVParser;
+import kr.co.torpedo.fileio.parser.JsoNParser;
+import kr.co.torpedo.fileio.parser.Parser;
+import kr.co.torpedo.fileio.parser.XmlParser;
 
 public class SerializerMaker {
-	public static Serializer makeSerializer(String str) {
+	public static Parser makeSerializer(String str, String dir) {
 		switch (str.toLowerCase()) {
 		case "byte":
-			return new ByteSerializer();
+			return new ByteParser(dir);
 		case "csv":
-			return new CSVSerializer();
+			return new CSVParser(dir);
 		case "xml":
-			return new XMLSerializer();
+			return new XmlParser(dir);
 		case "json":
-			return new JSONSerializer();
+			return new JsoNParser(dir);
 		default:
-			return new ByteSerializer();
-		}
-	}
-
-	public static DeSerializer makeDeSerializer(String str) {
-		switch (str.toLowerCase()) {
-		case "byte":
-			return new ByteDeSerializer();
-		case "csv":
-			return new CSVDeSerializer();
-		case "xml":
-			return new XMLDeSerializer();
-		case "json":
-			return new JSONDeSerializer();
-		default:
-			return new ByteDeSerializer();
+			return new ByteParser(dir);
 		}
 	}
 }
