@@ -11,7 +11,7 @@ public class SerializerMaker {
 		switch (str.toLowerCase()) {
 		case "byte":
 			return new ByteParser(dir);
-		case "csv":
+		case "cvs":
 			return new CSVParser(dir);
 		case "xml":
 			return new XmlParser(dir);
