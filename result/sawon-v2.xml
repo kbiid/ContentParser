@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<company>
+<employee id="1">
+<name>김기주</name>
+<age>26</age>
+<phoneNumber>010-2972-4701</phoneNumber>
+<department>개발부</department>
+<email>kbiid@naver.com</email>
+<term>정직원</term>
+</employee>
+<employee id="2">
+<name>홍길동</name>
+<age>23</age>
+<phoneNumber>010-1234-5678</phoneNumber>
+<department>영업부</department>
+<email>hong@naver.com</email>
+<term>정직원</term>
+</employee>
+<employee id="3">
+<name>장발장</name>
+<age>25</age>
+<phoneNumber>010-5678-1234</phoneNumber>
+<department>인사부</department>
+<email>jang@naver.com</email>
+<term>정직원</term>
+</employee>
+<employee id="4">
+<name>김광현</name>
+<age>30</age>
+<phoneNumber>010-4789-5131</phoneNumber>
+<department>개발부</department>
+<email>kim@naver.com</email>
+<term>정직원</term>
+</employee>
+<employee id="5">
+<name>김성현</name>
+<age>28</age>
+<phoneNumber>010-7465-1459</phoneNumber>
+<department>인사부</department>
+<email>sung@naver.com</email>
+<term>정직원</term>
+</employee>
+<employee id="6">
+<name>김인턴</name>
+<age>20</age>
+<phoneNumber>010-3475-1496</phoneNumber>
+<department>개발부</department>
+<email>intern@naver.com</email>
+<term>6</term>
+</employee>
+<employee id="7">
+<name>이인턴</name>
+<age>27</age>
+<phoneNumber>010-8754-7894</phoneNumber>
+<department>인사부</department>
+<email>lee@naver.com</email>
+<term>12</term>
+</employee>
+<employee id="8">
+<name>심인턴</name>
+<age>32</age>
+<phoneNumber>010-8522-0537</phoneNumber>
+<department>영업부</department>
+<email>sim@naver.com</email>
+<term>8</term>
+</employee>
+<employee id="9">
+<name>박인턴</name>
+<age>24</age>
+<phoneNumber>010-3694-7891</phoneNumber>
+<department>인사부</department>
+<email>park@naver.com</email>
+<term>12</term>
+</employee>
+</company>
