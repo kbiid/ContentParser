@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import kr.co.torpedo.fileio.factory.SerializerFactory;
 import kr.co.torpedo.fileio.parser.Parser;
-import kr.co.torpedo.fileio.prop.PropertyLoader;
-import kr.co.torpedo.fileio.prop.PropertyReader;
+import kr.co.torpedo.fileio.propertymodule.PropertyLoader;
+import kr.co.torpedo.fileio.propertymodule.PropertyReader;
 
 /**
  * 프로그램 실행시키기 위한 메인 클래스

@@ -1,4 +1,4 @@
-package kr.co.torpedo.fileio.prop;
+package kr.co.torpedo.fileio.propertymodule;
 
 import java.util.Properties;
 
