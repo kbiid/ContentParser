@@ -2,6 +2,7 @@ package kr.co.torpedo.fileio;
 
 import java.io.IOException;
 
+import kr.co.torpedo.fileio.factory.SerializerFactory;
 import kr.co.torpedo.fileio.parser.Parser;
 import kr.co.torpedo.fileio.prop.PropertyLoader;
 import kr.co.torpedo.fileio.prop.PropertyReader;
@@ -21,7 +22,7 @@ public class Main {
 
 		String format = reader.getFileFormat();
 		String dir = reader.getDir();
-		parser = SerializerMaker.makeSerializer(format, dir);
+		parser = SerializerFactory.makeSerializer(format, dir);
 		parser.setSawonPath();
 		parser.serializeEmployee();
 		parser.deSerializeEmployee();

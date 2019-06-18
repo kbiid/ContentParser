@@ -1,4 +1,4 @@
-package kr.co.torpedo.fileio;
+package kr.co.torpedo.fileio.factory;
 
 import kr.co.torpedo.fileio.parser.ByteParser;
 import kr.co.torpedo.fileio.parser.CSVParser;
@@ -6,19 +6,28 @@ import kr.co.torpedo.fileio.parser.JsoNParser;
 import kr.co.torpedo.fileio.parser.Parser;
 import kr.co.torpedo.fileio.parser.XmlParser;
 
-public class SerializerMaker {
+public class SerializerFactory {
 	public static Parser makeSerializer(String str, String dir) {
+		Parser parser = null;
+
 		switch (str.toLowerCase()) {
 		case "byte":
-			return new ByteParser(dir);
+			parser = new ByteParser(dir);
+			break;
 		case "cvs":
-			return new CSVParser(dir);
+			parser = new CSVParser(dir);
+			break;
 		case "xml":
-			return new XmlParser(dir);
+			parser = new XmlParser(dir);
+			break;
 		case "json":
-			return new JsoNParser(dir);
+			parser = new JsoNParser(dir);
+			break;
 		default:
-			return new ByteParser(dir);
+			parser = new ByteParser(dir);
+			break;
 		}
+
+		return parser;
 	}
 }
