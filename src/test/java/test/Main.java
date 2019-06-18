@@ -1,4 +1,4 @@
-package kr.co.torpedo.fileio;
+package test;
 
 import java.io.IOException;
 
@@ -16,6 +16,7 @@ import kr.co.torpedo.fileio.propertymodule.PropertyReader;
  */
 public class Main {
 	public static void main(String[] args) throws IOException {
+		InitiateData initiateData = new InitiateData();
 		PropertyLoader propertyLoader = new PropertyLoader();
 		propertyLoader.loadProp(Path.PROPERTY.getName());
 		PropertyReader reader = new PropertyReader(propertyLoader.getProperties());
@@ -24,11 +25,15 @@ public class Main {
 		String format = reader.getFileFormat();
 		String dir = reader.getDir();
 		parser = SerializerFactory.makeSerializer(format, dir);
+		initiateData.addEmployeeToList();
+		parser.setDataManager(initiateData.getDataManager());
 		parser.setSawonPath();
 		parser.serializeEmployee();
 		parser.deSerializeEmployee();
 		parser.getDataManager().showEmployeeList();
 
+		initiateData.addEmployeeToList();
+		initiateData.addInternToList();
 		parser.setInternPath();
 		parser.serializeWithIntern();
 		parser.deSrializeWithIntern();

@@ -23,6 +23,10 @@ public abstract class Parser {
 		return fileManager;
 	}
 
+	public void setDataManager(DataManager dataManager) {
+		this.dataManager = dataManager;
+	}
+
 	public DataManager getDataManager() {
 		return dataManager;
 	}
@@ -36,13 +40,10 @@ public abstract class Parser {
 	}
 	
 	public void serializeEmployee() {
-		getDataManager().addEmployeeToList();
 		selialize();
 	}
 
 	public void serializeWithIntern() {
-		getDataManager().addEmployeeToList();
-		getDataManager().addInternToList();
 		selialize();
 	}
 
