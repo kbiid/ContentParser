@@ -2,6 +2,7 @@ package kr.co.torpedo.fileio;
 
 import java.io.IOException;
 
+import kr.co.torpedo.fileio.data.Path;
 import kr.co.torpedo.fileio.factory.SerializerFactory;
 import kr.co.torpedo.fileio.parser.Parser;
 import kr.co.torpedo.fileio.propertymodule.PropertyLoader;
@@ -16,7 +17,7 @@ import kr.co.torpedo.fileio.propertymodule.PropertyReader;
 public class Main {
 	public static void main(String[] args) throws IOException {
 		PropertyLoader propertyLoader = new PropertyLoader();
-		propertyLoader.loadProp("D:/eclipse_workspace/ContentParser/src/main/resources/application.properties");
+		propertyLoader.loadProp(Path.PROPERTY.getName());
 		PropertyReader reader = new PropertyReader(propertyLoader.getProperties());
 		Parser parser;
 
