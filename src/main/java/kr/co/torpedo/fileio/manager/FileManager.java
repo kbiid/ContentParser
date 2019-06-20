@@ -13,14 +13,6 @@ public class FileManager {
 	private String dir;
 	private DataManager dataManager;
 
-	public File getDirfile() {
-		return dirfile;
-	}
-
-	public void setDirfile(File dirfile) {
-		this.dirfile = dirfile;
-	}
-
 	public File getMakefile() {
 		return makefile;
 	}
