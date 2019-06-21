@@ -1,7 +1,7 @@
 package test;
+import kr.co.torpedo.fileio.domain.Employee;
+import kr.co.torpedo.fileio.domain.Intern;
 import kr.co.torpedo.fileio.manager.DataManager;
-import kr.co.torpedo.fileio.model.Employee;
-import kr.co.torpedo.fileio.model.Intern;
 
 public class InitiateData {
 	private DataManager dataManager;

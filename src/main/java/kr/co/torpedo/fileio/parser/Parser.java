@@ -3,9 +3,9 @@ package kr.co.torpedo.fileio.parser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import kr.co.torpedo.fileio.domain.Employee;
 import kr.co.torpedo.fileio.manager.DataManager;
 import kr.co.torpedo.fileio.manager.FileManager;
-import kr.co.torpedo.fileio.model.Employee;
 
 public abstract class Parser {
 	public static final Logger invalidFileLogger = LoggerFactory.getLogger(Parser.class);

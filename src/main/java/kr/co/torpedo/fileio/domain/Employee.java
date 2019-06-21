@@ -1,4 +1,4 @@
-package kr.co.torpedo.fileio.model;
+package kr.co.torpedo.fileio.domain;
 
 import java.io.Serializable;
 

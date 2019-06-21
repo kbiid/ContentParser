@@ -12,8 +12,8 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 
-import kr.co.torpedo.fileio.model.Employee;
-import kr.co.torpedo.fileio.model.Intern;
+import kr.co.torpedo.fileio.domain.Employee;
+import kr.co.torpedo.fileio.domain.Intern;
 
 public class JsonParser extends Parser {
 

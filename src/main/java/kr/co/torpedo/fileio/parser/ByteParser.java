@@ -8,7 +8,7 @@ import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import kr.co.torpedo.fileio.model.Employee;
+import kr.co.torpedo.fileio.domain.Employee;
 
 public class ByteParser extends Parser {
 

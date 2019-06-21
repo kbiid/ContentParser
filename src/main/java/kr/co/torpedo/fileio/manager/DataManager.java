@@ -2,7 +2,7 @@ package kr.co.torpedo.fileio.manager;
 
 import java.util.ArrayList;
 
-import kr.co.torpedo.fileio.model.Employee;
+import kr.co.torpedo.fileio.domain.Employee;
 
 public class DataManager {
 	private ArrayList<Employee> employeeList;

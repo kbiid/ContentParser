@@ -15,8 +15,8 @@ import java.util.List;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 
-import kr.co.torpedo.fileio.model.Employee;
-import kr.co.torpedo.fileio.model.Intern;
+import kr.co.torpedo.fileio.domain.Employee;
+import kr.co.torpedo.fileio.domain.Intern;
 
 public class CSVParser extends Parser {
 	private List<String[]> data;
