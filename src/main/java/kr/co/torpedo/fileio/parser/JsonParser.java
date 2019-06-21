@@ -10,15 +10,14 @@ import java.io.InvalidClassException;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
 import kr.co.torpedo.fileio.model.Employee;
 import kr.co.torpedo.fileio.model.Intern;
 
-public class JsoNParser extends Parser {
+public class JsonParser extends Parser {
 
-	public JsoNParser(String dir) {
+	public JsonParser(String dir) {
 		super(dir);
 		getFileManager().setFileName("sawon-v1.json");
 		getFileManager().setFileNameIntern("sawon-v2.json");
@@ -74,7 +73,7 @@ public class JsoNParser extends Parser {
 	@Override
 	public void deSelialize() {
 		getDataManager().getEmployeeList().clear();
-		JsonParser parser = new JsonParser();
+		com.google.gson.JsonParser parser = new com.google.gson.JsonParser();
 		try {
 			Object obj = parser.parse(new FileReader(getFileManager().getMakefile()));
 			Employee emp = null;

@@ -1,4 +1,4 @@
-package kr.co.torpedo.fileio.data;
+package kr.co.torpedo.fileio.type;
 
 public enum Path {
 	PROPERTY("D:/eclipse_workspace/ContentParser/src/main/resources/application.properties");

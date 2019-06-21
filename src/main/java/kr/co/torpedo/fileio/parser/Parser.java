@@ -8,7 +8,7 @@ import kr.co.torpedo.fileio.manager.FileManager;
 import kr.co.torpedo.fileio.model.Employee;
 
 public abstract class Parser {
-	public static final Logger invalidFileLogger = LoggerFactory.getLogger("log.invalid");
+	public static final Logger invalidFileLogger = LoggerFactory.getLogger(Parser.class);
 	private FileManager fileManager;
 	private DataManager dataManager;
 
@@ -34,11 +34,11 @@ public abstract class Parser {
 	public void setSawonPath() {
 		fileManager.setSawonFilePath();
 	}
-	
+
 	public void setInternPath() {
 		fileManager.setInterFilenPath();
 	}
-	
+
 	public void serializeEmployee() {
 		selialize();
 	}

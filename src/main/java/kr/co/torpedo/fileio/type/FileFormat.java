@@ -1,4 +1,4 @@
-package kr.co.torpedo.fileio.data;
+package kr.co.torpedo.fileio.type;
 
 public enum FileFormat {
 	CVS("cvs"), BYTE("byte"), XML("xml"), JSON("json");

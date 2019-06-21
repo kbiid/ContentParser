@@ -1,4 +1,4 @@
-package kr.co.torpedo.fileio.propertymodule;
+package kr.co.torpedo.fileio.config;
 
 import java.io.FileInputStream;
 import java.io.IOException;
