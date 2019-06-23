@@ -1,7 +1,7 @@
 package kr.co.torpedo.fileio.type;
 
 public enum FileFormat {
-	CVS("cvs"), BYTE("byte"), XML("xml"), JSON("json");
+	CSV("csv"), BYTE("byte"), XML("xml"), JSON("json");
 	
 	final private String name;
 

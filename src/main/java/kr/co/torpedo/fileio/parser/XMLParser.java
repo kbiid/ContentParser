@@ -26,10 +26,10 @@ import org.xml.sax.SAXException;
 import kr.co.torpedo.fileio.domain.Employee;
 import kr.co.torpedo.fileio.domain.Intern;
 
-public class XmlParser extends Parser {
+public class XMLParser extends Parser {
 
-	public XmlParser(String dir) {
-		super(dir);
+	public XMLParser() {
+		super();
 		getFileManager().setFileName("sawon-v1.xml");
 		getFileManager().setFileNameIntern("sawon-v2.xml");
 	}

@@ -22,8 +22,8 @@ public class CSVParser extends Parser {
 	private List<String[]> data;
 	private String[] strList;
 
-	public CSVParser(String dir) {
-		super(dir);
+	public CSVParser() {
+		super();
 		getFileManager().setFileName("sawon-v1.csv");
 		getFileManager().setFileNameIntern("sawon-v2.csv");
 		data = new ArrayList<String[]>();

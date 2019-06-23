@@ -10,10 +10,10 @@ import java.io.ObjectOutputStream;
 
 import kr.co.torpedo.fileio.domain.Employee;
 
-public class ByteParser extends Parser {
+public class BYTEParser extends Parser {
 
-	public ByteParser(String dir) {
-		super(dir);
+	public BYTEParser() {
+		super();
 		getFileManager().setFileName("sawon-v1.txt");
 		getFileManager().setFileNameIntern("sawon-v2.txt");
 	}

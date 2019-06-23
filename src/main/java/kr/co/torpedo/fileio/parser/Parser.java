@@ -12,14 +12,12 @@ public abstract class Parser {
 	private FileManager fileManager;
 	private DataManager dataManager;
 
-	public Parser(String dir) {
+	public Parser() {
 		dataManager = new DataManager();
 		fileManager = new FileManager();
-		fileManager.setDir(dir);
-		fileManager.makeDirFile();
 	}
-
-	protected FileManager getFileManager() {
+	
+	public FileManager getFileManager() {
 		return fileManager;
 	}
 

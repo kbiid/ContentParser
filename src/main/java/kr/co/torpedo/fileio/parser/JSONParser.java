@@ -15,10 +15,10 @@ import com.google.gson.JsonSyntaxException;
 import kr.co.torpedo.fileio.domain.Employee;
 import kr.co.torpedo.fileio.domain.Intern;
 
-public class JsonParser extends Parser {
+public class JSONParser extends Parser {
 
-	public JsonParser(String dir) {
-		super(dir);
+	public JSONParser() {
+		super();
 		getFileManager().setFileName("sawon-v1.json");
 		getFileManager().setFileNameIntern("sawon-v2.json");
 	}
