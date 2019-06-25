@@ -16,20 +16,8 @@ public class FileManager {
 		return makefile;
 	}
 
-	public void setMakefile(File makefile) {
-		this.makefile = makefile;
-	}
-
-	public String getFileName() {
-		return fileName;
-	}
-
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
-	}
-
-	public String getFileNameIntern() {
-		return fileNameIntern;
 	}
 
 	public void setFileNameIntern(String fileNameIntern) {
@@ -50,10 +38,6 @@ public class FileManager {
 
 	public void setInterFilenPath() {
 		makefile = new File(getDir() + fileNameIntern);
-	}
-
-	public void makeDirFile() {
-		dirfile = new File(getDir());
 	}
 
 	public void checkAndMakeDir() {

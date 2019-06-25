@@ -21,10 +21,6 @@ public abstract class Parser {
 		this.fileManager = fileManager;
 	}
 
-	public FileManager getFileManager() {
-		return fileManager;
-	}
-
 	public void setDataManager(DataManager dataManager) {
 		this.dataManager = dataManager;
 	}
