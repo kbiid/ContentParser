@@ -24,23 +24,23 @@ public class CSVParser extends Parser {
 
 	public CSVParser() {
 		super();
-		getFileManager().setFileName("sawon-v1.csv");
-		getFileManager().setFileNameIntern("sawon-v2.csv");
+		fileManager.setFileName("sawon-v1.csv");
+		fileManager.setFileNameIntern("sawon-v2.csv");
 		data = new ArrayList<String[]>();
 		strList = new String[6];
 	}
 
 	@Override
 	protected void selialize() {
-		getFileManager().checkAndMakeDir();
-		getFileManager().checkAndMakeFile();
+		fileManager.checkAndMakeDir();
+		fileManager.checkAndMakeFile();
 		data.clear();
 		setEmployeeData();
 
 		try (CSVWriter cw = new CSVWriter(
-				new OutputStreamWriter(new FileOutputStream(getFileManager().getMakefile()), "EUC-KR"))) {
+				new OutputStreamWriter(new FileOutputStream(fileManager.getMakefile()), "EUC-KR"))) {
 			writeEmployee(cw);
-			getDataManager().getEmployeeList().clear();
+			dataManager.getEmployeeList().clear();
 		} catch (IOException e) {
 			Parser.invalidFileLogger.error("CSVSerializer IOException : " + e);
 		}
@@ -66,7 +66,7 @@ public class CSVParser extends Parser {
 	}
 
 	public void setEmployeeData() {
-		for (Employee emp : getDataManager().getEmployeeList()) {
+		for (Employee emp : dataManager.getEmployeeList()) {
 			strList = new String[6];
 			if (!isIntern(emp)) {
 				strList[0] = emp.getName();
@@ -97,12 +97,12 @@ public class CSVParser extends Parser {
 
 	@Override
 	public void deSelialize() {
-		getDataManager().getEmployeeList().clear();
+		dataManager.getEmployeeList().clear();
 		Employee emp = null;
 		data.clear();
 
 		try (CSVReader reader = new CSVReader(
-				new InputStreamReader(new FileInputStream(getFileManager().getMakefile()), "EUC-KR"))) {
+				new InputStreamReader(new FileInputStream(fileManager.getMakefile()), "EUC-KR"))) {
 			readEmployee(emp, reader);
 			setDataToEmployee();
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
@@ -141,10 +141,10 @@ public class CSVParser extends Parser {
 		for (String[] str : data) {
 			if (!isReadDataIntern(str)) {
 				emp = new Employee(str[0], Integer.parseInt(str[1]), str[2], str[3], str[4]);
-				getDataManager().getEmployeeList().add(emp);
+				dataManager.getEmployeeList().add(emp);
 			} else {
 				emp = new Intern(str[0], Integer.parseInt(str[1]), str[2], str[3], str[4], Integer.parseInt(str[5]));
-				getDataManager().getEmployeeList().add(emp);
+				dataManager.getEmployeeList().add(emp);
 			}
 		}
 	}

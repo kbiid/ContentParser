@@ -14,19 +14,19 @@ public class BYTEParser extends Parser {
 
 	public BYTEParser() {
 		super();
-		getFileManager().setFileName("sawon-v1.txt");
-		getFileManager().setFileNameIntern("sawon-v2.txt");
+		fileManager.setFileName("sawon-v1.txt");
+		fileManager.setFileNameIntern("sawon-v2.txt");
 	}
 
 	@Override
 	protected void selialize() {
-		getFileManager().checkAndMakeDir();
-		getFileManager().checkAndMakeFile();
+		fileManager.checkAndMakeDir();
+		fileManager.checkAndMakeFile();
 
-		try (FileOutputStream fout = new FileOutputStream(getFileManager().getMakefile());
+		try (FileOutputStream fout = new FileOutputStream(fileManager.getMakefile());
 				ObjectOutputStream oout = new ObjectOutputStream(fout)) {
 			writeEmployee(oout);
-			getDataManager().getEmployeeList().clear();
+			dataManager.getEmployeeList().clear();
 		} catch (Exception e) {
 			Parser.invalidFileLogger.error("ByteSerializer Exception : " + e);
 		}
@@ -36,7 +36,7 @@ public class BYTEParser extends Parser {
 	protected void writeEmployee(Object obj) {
 		if ((obj instanceof ObjectOutputStream)) {
 			ObjectOutputStream oout = (ObjectOutputStream) obj;
-			for (Employee employee : getDataManager().getEmployeeList()) {
+			for (Employee employee : dataManager.getEmployeeList()) {
 				try {
 					oout.writeObject(employee);
 				} catch (IOException e) {
@@ -54,12 +54,12 @@ public class BYTEParser extends Parser {
 
 	@Override
 	public void deSelialize() {
-		getFileManager().checkAndMakeDir();
-		getFileManager().checkAndMakeFile();
-		getDataManager().getEmployeeList().clear();
+		fileManager.checkAndMakeDir();
+		fileManager.checkAndMakeFile();
+		dataManager.getEmployeeList().clear();
 		Employee emp = null;
 
-		try (FileInputStream fin = new FileInputStream(getFileManager().getMakefile());
+		try (FileInputStream fin = new FileInputStream(fileManager.getMakefile());
 				ObjectInputStream oin = new ObjectInputStream(fin)) {
 			readEmployee(emp, oin);
 		} catch (IOException e) {
@@ -83,7 +83,7 @@ public class BYTEParser extends Parser {
 		try {
 			while (true) {
 				emp = (Employee) oin.readObject();
-				getDataManager().addList(emp);
+				dataManager.addList(emp);
 			}
 		} catch (EOFException e) {
 			Parser.invalidFileLogger.error("ByteDeSerializer Exception : " + e);

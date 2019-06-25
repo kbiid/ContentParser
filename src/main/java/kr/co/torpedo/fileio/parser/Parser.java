@@ -9,14 +9,18 @@ import kr.co.torpedo.fileio.manager.FileManager;
 
 public abstract class Parser {
 	public static final Logger invalidFileLogger = LoggerFactory.getLogger(Parser.class);
-	private FileManager fileManager;
-	private DataManager dataManager;
+	protected FileManager fileManager;
+	protected DataManager dataManager;
 
 	public Parser() {
 		dataManager = new DataManager();
 		fileManager = new FileManager();
 	}
 	
+	public void setFileManager(FileManager fileManager) {
+		this.fileManager = fileManager;
+	}
+
 	public FileManager getFileManager() {
 		return fileManager;
 	}

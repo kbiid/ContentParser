@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import kr.co.torpedo.fileio.config.ConfigReader;
 import kr.co.torpedo.fileio.factory.SerializerFactory;
+import kr.co.torpedo.fileio.manager.FileManager;
 import kr.co.torpedo.fileio.parser.Parser;
 
 /**
@@ -16,12 +17,17 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		InitiateData initiateData = new InitiateData();
 		ConfigReader configReader = new ConfigReader();
+		String dir = configReader.getDir();
 		Parser parser;
+		
 		String format = configReader.getFileFormat();
 		parser = SerializerFactory.makeSerializer(format);
-		String dir = configReader.getDir();
-		parser.getFileManager().setDir(dir);
-		parser.getFileManager().getMakefile();
+		
+		FileManager fileManager = new FileManager();
+		fileManager.setDir(dir);
+		fileManager.getMakefile();
+		parser.setFileManager(fileManager);
+		
 		initiateData.addEmployeeToList();
 		parser.setDataManager(initiateData.getDataManager());
 		parser.setSawonPath();

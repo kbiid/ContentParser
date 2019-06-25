@@ -11,7 +11,6 @@ public class FileManager {
 	private String fileName;
 	private String fileNameIntern;
 	private String dir;
-	private DataManager dataManager;
 
 	public File getMakefile() {
 		return makefile;
@@ -43,14 +42,6 @@ public class FileManager {
 
 	public void setDir(String dir) {
 		this.dir = dir;
-	}
-
-	public DataManager getDataManager() {
-		return dataManager;
-	}
-
-	public void setDataManager(DataManager dataManager) {
-		this.dataManager = dataManager;
 	}
 
 	public void setSawonFilePath() {

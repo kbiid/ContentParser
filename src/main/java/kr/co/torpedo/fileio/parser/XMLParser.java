@@ -30,8 +30,8 @@ public class XMLParser extends Parser {
 
 	public XMLParser() {
 		super();
-		getFileManager().setFileName("sawon-v1.xml");
-		getFileManager().setFileNameIntern("sawon-v2.xml");
+		fileManager.setFileName("sawon-v1.xml");
+		fileManager.setFileNameIntern("sawon-v2.xml");
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class XMLParser extends Parser {
 		} catch (ParserConfigurationException e) {
 			Parser.invalidFileLogger.error("XMLSerializer ParserConfigurationException : " + e);
 		}
-		getDataManager().getEmployeeList().clear();
+		dataManager.getEmployeeList().clear();
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class XMLParser extends Parser {
 		doc.appendChild(rootElement);
 		Element employee = null;
 
-		for (int i = 0; i < getDataManager().getEmployeeList().size(); i++) {
+		for (int i = 0; i < dataManager.getEmployeeList().size(); i++) {
 			// employee 엘리먼트
 			employee = doc.createElement("employee");
 			rootElement.appendChild(employee);
@@ -76,34 +76,34 @@ public class XMLParser extends Parser {
 
 			// name 엘리먼트
 			Element name = doc.createElement("name");
-			name.appendChild(doc.createTextNode(getDataManager().getEmployeeList().get(i).getName()));
+			name.appendChild(doc.createTextNode(dataManager.getEmployeeList().get(i).getName()));
 			employee.appendChild(name);
 
 			// age 엘리먼트
 			Element age = doc.createElement("age");
-			age.appendChild(doc.createTextNode(Integer.toString(getDataManager().getEmployeeList().get(i).getAge())));
+			age.appendChild(doc.createTextNode(Integer.toString(dataManager.getEmployeeList().get(i).getAge())));
 			employee.appendChild(age);
 
 			// phoneNumber 엘리먼트
 			Element phoneNumber = doc.createElement("phoneNumber");
-			phoneNumber.appendChild(doc.createTextNode(getDataManager().getEmployeeList().get(i).getPhoneNumber()));
+			phoneNumber.appendChild(doc.createTextNode(dataManager.getEmployeeList().get(i).getPhoneNumber()));
 			employee.appendChild(phoneNumber);
 
 			// department 엘리먼트
 			Element department = doc.createElement("department");
-			department.appendChild(doc.createTextNode(getDataManager().getEmployeeList().get(i).getDepartMent()));
+			department.appendChild(doc.createTextNode(dataManager.getEmployeeList().get(i).getDepartMent()));
 			employee.appendChild(department);
 
 			// email 엘리먼트
 			Element email = doc.createElement("email");
-			email.appendChild(doc.createTextNode(getDataManager().getEmployeeList().get(i).getEmail()));
+			email.appendChild(doc.createTextNode(dataManager.getEmployeeList().get(i).getEmail()));
 			employee.appendChild(email);
 
 			// term 엘리먼트
 			Element term = doc.createElement("term");
 			String str;
-			if (getDataManager().getEmployeeList().get(i) instanceof Intern) {
-				str = Integer.toString(((Intern) getDataManager().getEmployeeList().get(i)).getTerm());
+			if (dataManager.getEmployeeList().get(i) instanceof Intern) {
+				str = Integer.toString(((Intern) dataManager.getEmployeeList().get(i)).getTerm());
 			} else {
 				str = "정직원";
 			}
@@ -122,7 +122,7 @@ public class XMLParser extends Parser {
 			DOMSource source = new DOMSource(doc);
 			StreamResult result = null;
 			try {
-				result = new StreamResult(new FileOutputStream(getFileManager().getMakefile()));
+				result = new StreamResult(new FileOutputStream(fileManager.getMakefile()));
 			} catch (FileNotFoundException e) {
 				Parser.invalidFileLogger.error("XMLSerializer FileNotFoundException : " + e);
 			} finally {
@@ -139,7 +139,7 @@ public class XMLParser extends Parser {
 
 	@Override
 	public void deSelialize() {
-		getDataManager().getEmployeeList().clear();
+		dataManager.getEmployeeList().clear();
 		try {
 			// XML 문서 파싱
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -147,7 +147,7 @@ public class XMLParser extends Parser {
 			Document document = null;
 			Employee emp = null;
 			try {
-				document = documentBuilder.parse(getFileManager().getMakefile().getAbsolutePath());
+				document = documentBuilder.parse(fileManager.getMakefile().getAbsolutePath());
 				readEmployee(emp, document);
 			} catch (SAXException | IOException e) {
 				Parser.invalidFileLogger.error("XMLDeSerializer Exception : " + e);
@@ -225,11 +225,11 @@ public class XMLParser extends Parser {
 		}
 		if (term.equals("정직원")) {
 			Employee employee = new Employee(name, age, phoneNumber, department, email);
-			getDataManager().addList(employee);
+			dataManager.addList(employee);
 		} else {
 			int termInt = Integer.parseInt(term);
 			Intern intern = new Intern(name, age, phoneNumber, department, email, termInt);
-			getDataManager().addList(intern);
+			dataManager.addList(intern);
 		}
 	}
 }

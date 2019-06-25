@@ -19,8 +19,8 @@ public class JSONParser extends Parser {
 
 	public JSONParser() {
 		super();
-		getFileManager().setFileName("sawon-v1.json");
-		getFileManager().setFileNameIntern("sawon-v2.json");
+		fileManager.setFileName("sawon-v1.json");
+		fileManager.setFileNameIntern("sawon-v2.json");
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class JSONParser extends Parser {
 		JsonObject jObj = null;
 		JsonObject empObj = new JsonObject();
 		JsonArray array = new JsonArray();
-		for (Employee emp : getDataManager().getEmployeeList()) {
+		for (Employee emp : dataManager.getEmployeeList()) {
 			jObj = new JsonObject();
 
 			jObj.addProperty("name", emp.getName());
@@ -46,7 +46,7 @@ public class JSONParser extends Parser {
 			empObj.add("employee", array);
 			writeEmployee(empObj.toString());
 		}
-		getDataManager().getEmployeeList().clear();
+		dataManager.getEmployeeList().clear();
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class JSONParser extends Parser {
 			}
 		}
 
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter(getFileManager().getMakefile()))) {
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileManager.getMakefile()))) {
 			bw.write(json);
 			bw.write("\r\n");
 		} catch (IOException e) {
@@ -72,10 +72,10 @@ public class JSONParser extends Parser {
 
 	@Override
 	public void deSelialize() {
-		getDataManager().getEmployeeList().clear();
+		dataManager.getEmployeeList().clear();
 		com.google.gson.JsonParser parser = new com.google.gson.JsonParser();
 		try {
-			Object obj = parser.parse(new FileReader(getFileManager().getMakefile()));
+			Object obj = parser.parse(new FileReader(fileManager.getMakefile()));
 			Employee emp = null;
 			JsonObject jsonObj = (JsonObject) obj;
 			readEmployee(emp, jsonObj);
@@ -112,7 +112,7 @@ public class JSONParser extends Parser {
 			} else {
 				emp = new Intern(name, age, phoneNumber, department, email, Integer.parseInt(term));
 			}
-			getDataManager().addList(emp);
+			dataManager.addList(emp);
 		}
 	}
 }
