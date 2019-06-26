@@ -14,6 +14,7 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
@@ -27,15 +28,8 @@ import kr.co.torpedo.fileio.domain.Employee;
 import kr.co.torpedo.fileio.domain.Intern;
 
 public class XMLParser extends Parser {
-
-	public XMLParser() {
-		super();
-		fileManager.setFileName("sawon-v1.xml");
-		fileManager.setFileNameIntern("sawon-v2.xml");
-	}
-
 	@Override
-	protected void selialize() {
+	public void selialize() {
 		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -60,6 +54,38 @@ public class XMLParser extends Parser {
 				Parser.invalidFileLogger.error("XMLSerializer InvalidClassException : " + e);
 			}
 		}
+		Document doc = makeDocument(docBuilder);
+		writeFileToXML(doc);
+	}
+
+	private void writeFileToXML(Document doc) throws TransformerFactoryConfigurationError {
+		try {
+			// XML 파일로 쓰기
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+
+			transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+			DOMSource source = new DOMSource(doc);
+			StreamResult result = null;
+			try {
+				result = new StreamResult(new FileOutputStream(fileManager.getResultMadeFile()));
+			} catch (FileNotFoundException e) {
+				Parser.invalidFileLogger.error("XMLSerializer FileNotFoundException : " + e);
+			} finally {
+				try {
+					transformer.transform(source, result);
+				} catch (TransformerException e) {
+					Parser.invalidFileLogger.error("XMLSerializer TransformerException : " + e);
+				}
+			}
+		} catch (TransformerConfigurationException e) {
+			Parser.invalidFileLogger.error("XMLSerializer TransformerConfigurationException : " + e);
+		}
+	}
+
+	private Document makeDocument(DocumentBuilder docBuilder) {
 		// 루트 엘리먼트
 		Document doc = docBuilder.newDocument();
 		Element rootElement = doc.createElement("company");
@@ -110,31 +136,7 @@ public class XMLParser extends Parser {
 			term.appendChild(doc.createTextNode(str));
 			employee.appendChild(term);
 		}
-
-		try {
-			// XML 파일로 쓰기
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			Transformer transformer = transformerFactory.newTransformer();
-
-			transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-
-			DOMSource source = new DOMSource(doc);
-			StreamResult result = null;
-			try {
-				result = new StreamResult(new FileOutputStream(fileManager.getMakefile()));
-			} catch (FileNotFoundException e) {
-				Parser.invalidFileLogger.error("XMLSerializer FileNotFoundException : " + e);
-			} finally {
-				try {
-					transformer.transform(source, result);
-				} catch (TransformerException e) {
-					Parser.invalidFileLogger.error("XMLSerializer TransformerException : " + e);
-				}
-			}
-		} catch (TransformerConfigurationException e) {
-			Parser.invalidFileLogger.error("XMLSerializer TransformerConfigurationException : " + e);
-		}
+		return doc;
 	}
 
 	@Override
@@ -147,7 +149,7 @@ public class XMLParser extends Parser {
 			Document document = null;
 			Employee emp = null;
 			try {
-				document = documentBuilder.parse(fileManager.getMakefile().getAbsolutePath());
+				document = documentBuilder.parse(fileManager.getResultMadeFile().getAbsolutePath());
 				readEmployee(emp, document);
 			} catch (SAXException | IOException e) {
 				Parser.invalidFileLogger.error("XMLDeSerializer Exception : " + e);
@@ -158,7 +160,7 @@ public class XMLParser extends Parser {
 	}
 
 	@Override
-	public void readEmployee(Employee emp, Object obj) {
+	protected void readEmployee(Employee emp, Object obj) {
 		Document document = null;
 		if (obj instanceof Document) {
 			document = (Document) obj;
@@ -231,5 +233,10 @@ public class XMLParser extends Parser {
 			Intern intern = new Intern(name, age, phoneNumber, department, email, termInt);
 			dataManager.addList(intern);
 		}
+	}
+
+	@Override
+	protected void setFileName(String fileName) {
+		fileManager.setFileName(fileName + ".xml");
 	}
 }

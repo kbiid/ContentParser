@@ -23,22 +23,19 @@ public class CSVParser extends Parser {
 	private String[] strList;
 
 	public CSVParser() {
-		super();
-		fileManager.setFileName("sawon-v1.csv");
-		fileManager.setFileNameIntern("sawon-v2.csv");
 		data = new ArrayList<String[]>();
 		strList = new String[6];
 	}
 
 	@Override
-	protected void selialize() {
+	public void selialize() {
 		fileManager.checkAndMakeDir();
 		fileManager.checkAndMakeFile();
 		data.clear();
 		setEmployeeData();
 
 		try (CSVWriter cw = new CSVWriter(
-				new OutputStreamWriter(new FileOutputStream(fileManager.getMakefile()), "EUC-KR"))) {
+				new OutputStreamWriter(new FileOutputStream(fileManager.getResultMadeFile()), "EUC-KR"))) {
 			writeEmployee(cw);
 			dataManager.getEmployeeList().clear();
 		} catch (IOException e) {
@@ -102,7 +99,7 @@ public class CSVParser extends Parser {
 		data.clear();
 
 		try (CSVReader reader = new CSVReader(
-				new InputStreamReader(new FileInputStream(fileManager.getMakefile()), "EUC-KR"))) {
+				new InputStreamReader(new FileInputStream(fileManager.getResultMadeFile()), "EUC-KR"))) {
 			readEmployee(emp, reader);
 			setDataToEmployee();
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
@@ -113,7 +110,7 @@ public class CSVParser extends Parser {
 	}
 
 	@Override
-	public void readEmployee(Employee emp, Object obj) {
+	protected void readEmployee(Employee emp, Object obj) {
 		CSVReader reader = null;
 		String[] s;
 
@@ -155,5 +152,10 @@ public class CSVParser extends Parser {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	protected void setFileName(String fileName) {
+		fileManager.setFileName(fileName + ".csv");
 	}
 }

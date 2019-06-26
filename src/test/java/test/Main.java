@@ -17,29 +17,29 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		InitiateData initiateData = new InitiateData();
 		ConfigReader configReader = new ConfigReader();
-		String dir = configReader.getDir();
 		Parser parser;
-		
-		String format = configReader.getFileFormat();
-		parser = SerializerFactory.makeSerializer(format);
-		
+		parser = SerializerFactory.makeSerializer(configReader.getFileFormat());
+
 		FileManager fileManager = new FileManager();
-		fileManager.setDir(dir);
-		fileManager.getMakefile();
+		fileManager.setFileBaseDir(configReader.getDir());
+		fileManager.setFileName("sawon-v1");
+		fileManager.getResultMadeFile();
 		parser.setFileManager(fileManager);
-		
+
 		initiateData.addEmployeeToList();
 		parser.setDataManager(initiateData.getDataManager());
-		parser.setSawonPath();
-		parser.serializeEmployee();
-		parser.deSerializeEmployee();
+		parser.getFileManager().makeBaseDirFile();
+		parser.getFileManager().makeResultFile();
+		parser.selialize();
+		parser.deSelialize();
 		parser.getDataManager().showEmployeeList();
 
 		initiateData.addEmployeeToList();
 		initiateData.addInternToList();
-		parser.setInternPath();
-		parser.serializeWithIntern();
-		parser.deSrializeWithIntern();
+		fileManager.setFileName("sawon-v2");
+		parser.getFileManager().makeResultFile();
+		parser.selialize();
+		parser.deSelialize();
 		parser.getDataManager().showEmployeeList();
 	}
 }

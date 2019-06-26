@@ -11,19 +11,12 @@ import java.io.ObjectOutputStream;
 import kr.co.torpedo.fileio.domain.Employee;
 
 public class BYTEParser extends Parser {
-
-	public BYTEParser() {
-		super();
-		fileManager.setFileName("sawon-v1.txt");
-		fileManager.setFileNameIntern("sawon-v2.txt");
-	}
-
 	@Override
-	protected void selialize() {
+	public void selialize() {
 		fileManager.checkAndMakeDir();
 		fileManager.checkAndMakeFile();
 
-		try (FileOutputStream fout = new FileOutputStream(fileManager.getMakefile());
+		try (FileOutputStream fout = new FileOutputStream(fileManager.getResultMadeFile());
 				ObjectOutputStream oout = new ObjectOutputStream(fout)) {
 			writeEmployee(oout);
 			dataManager.getEmployeeList().clear();
@@ -59,7 +52,7 @@ public class BYTEParser extends Parser {
 		dataManager.getEmployeeList().clear();
 		Employee emp = null;
 
-		try (FileInputStream fin = new FileInputStream(fileManager.getMakefile());
+		try (FileInputStream fin = new FileInputStream(fileManager.getResultMadeFile());
 				ObjectInputStream oin = new ObjectInputStream(fin)) {
 			readEmployee(emp, oin);
 		} catch (IOException e) {
@@ -68,7 +61,7 @@ public class BYTEParser extends Parser {
 	}
 
 	@Override
-	public void readEmployee(Employee emp, Object obj) {
+	protected void readEmployee(Employee emp, Object obj) {
 		ObjectInputStream oin = null;
 
 		if ((obj instanceof ObjectInputStream)) {
@@ -90,5 +83,10 @@ public class BYTEParser extends Parser {
 		} catch (IOException | ClassNotFoundException e) {
 			Parser.invalidFileLogger.error("ByteDeSerializer Exception : " + e);
 		}
+	}
+
+	@Override
+	protected void setFileName(String fileName) {
+		fileManager.setFileName(fileName + ".txt");
 	}
 }

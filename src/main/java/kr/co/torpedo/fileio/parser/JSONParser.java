@@ -16,15 +16,8 @@ import kr.co.torpedo.fileio.domain.Employee;
 import kr.co.torpedo.fileio.domain.Intern;
 
 public class JSONParser extends Parser {
-
-	public JSONParser() {
-		super();
-		fileManager.setFileName("sawon-v1.json");
-		fileManager.setFileNameIntern("sawon-v2.json");
-	}
-
 	@Override
-	protected void selialize() {
+	public void selialize() {
 		JsonObject jObj = null;
 		JsonObject empObj = new JsonObject();
 		JsonArray array = new JsonArray();
@@ -62,7 +55,7 @@ public class JSONParser extends Parser {
 			}
 		}
 
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileManager.getMakefile()))) {
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileManager.getResultMadeFile()))) {
 			bw.write(json);
 			bw.write("\r\n");
 		} catch (IOException e) {
@@ -75,7 +68,7 @@ public class JSONParser extends Parser {
 		dataManager.getEmployeeList().clear();
 		com.google.gson.JsonParser parser = new com.google.gson.JsonParser();
 		try {
-			Object obj = parser.parse(new FileReader(fileManager.getMakefile()));
+			Object obj = parser.parse(new FileReader(fileManager.getResultMadeFile()));
 			Employee emp = null;
 			JsonObject jsonObj = (JsonObject) obj;
 			readEmployee(emp, jsonObj);
@@ -85,7 +78,7 @@ public class JSONParser extends Parser {
 	}
 
 	@Override
-	public void readEmployee(Employee emp, Object obj) {
+	protected void readEmployee(Employee emp, Object obj) {
 		JsonObject jsonObj = null;
 
 		if (obj instanceof JsonObject) {
@@ -114,5 +107,10 @@ public class JSONParser extends Parser {
 			}
 			dataManager.addList(emp);
 		}
+	}
+
+	@Override
+	protected void setFileName(String fileName) {
+		fileManager.setFileName(fileName + ".json");
 	}
 }

@@ -6,47 +6,42 @@ import java.io.IOException;
 import kr.co.torpedo.fileio.parser.Parser;
 
 public class FileManager {
-	private File dirfile;
-	private File makefile;
+	private File baseDirFile;
+	private File resultMadeFile;
 	private String fileName;
-	private String fileNameIntern;
-	private String dir;
+	private String fileBaseDirPath;
 
-	public File getMakefile() {
-		return makefile;
+	public File getResultMadeFile() {
+		return resultMadeFile;
 	}
 
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
 
-	public void setFileNameIntern(String fileNameIntern) {
-		this.fileNameIntern = fileNameIntern;
+	public String getFileBaseDir() {
+		return fileBaseDirPath;
 	}
 
-	public String getDir() {
-		return dir;
+	public void setFileBaseDir(String dir) {
+		this.fileBaseDirPath = dir;
 	}
 
-	public void setDir(String dir) {
-		this.dir = dir;
+	public void makeResultFile() {
+		resultMadeFile = new File(getFileBaseDir() + fileName);
 	}
-
-	public void setSawonFilePath() {
-		makefile = new File(getDir() + fileName);
-	}
-
-	public void setInterFilenPath() {
-		makefile = new File(getDir() + fileNameIntern);
+	
+	public void makeBaseDirFile() {
+		baseDirFile = new File(fileBaseDirPath);
 	}
 
 	public void checkAndMakeDir() {
-		if (dirfile == null) { // dirfile 변수가 null 일때
+		if (baseDirFile == null) { // dirfile 변수가 null 일때
 			Parser.invalidFileLogger.error("dirfile is NullException!");
 			throw new NullPointerException("dirfile is NullException!");
 		}
-		if (!dirfile.exists()) { // 폴더가 없는 경우
-			if (dirfile.mkdir()) {
+		if (!baseDirFile.exists()) { // 폴더가 없는 경우
+			if (baseDirFile.mkdir()) {
 				Parser.invalidFileLogger.info("folder make success");
 			} else {
 				Parser.invalidFileLogger.error("folder make fail");
@@ -58,13 +53,13 @@ public class FileManager {
 	}
 
 	public void checkAndMakeFile() {
-		if (makefile == null) { // makefile 변수가 null 일때
+		if (resultMadeFile == null) { // makefile 변수가 null 일때
 			Parser.invalidFileLogger.error("makeFile is NullException!");
 			throw new NullPointerException("makeFile is NullException!");
 		}
-		if (!makefile.exists()) { // 파일이 없는 경우
+		if (!resultMadeFile.exists()) { // 파일이 없는 경우
 			try {
-				if (makefile.createNewFile()) {
+				if (resultMadeFile.createNewFile()) {
 					Parser.invalidFileLogger.info("File make Success ");
 				} else {
 					Parser.invalidFileLogger.error("FileManager make File NullException!");

@@ -12,11 +12,10 @@ public abstract class Parser {
 	protected FileManager fileManager;
 	protected DataManager dataManager;
 
-	public Parser() {
-		dataManager = new DataManager();
-		fileManager = new FileManager();
+	public FileManager getFileManager() {
+		return fileManager;
 	}
-	
+
 	public void setFileManager(FileManager fileManager) {
 		this.fileManager = fileManager;
 	}
@@ -29,34 +28,10 @@ public abstract class Parser {
 		return dataManager;
 	}
 
-	public void setSawonPath() {
-		fileManager.setSawonFilePath();
-	}
-
-	public void setInternPath() {
-		fileManager.setInterFilenPath();
-	}
-
-	public void serializeEmployee() {
-		selialize();
-	}
-
-	public void serializeWithIntern() {
-		selialize();
-	}
-
-	public void deSerializeEmployee() {
-		deSelialize();
-	}
-
-	public void deSrializeWithIntern() {
-		deSelialize();
-	}
-
 	/**
 	 * 직렬화 후 파일에 저장하는 메소드
 	 */
-	protected abstract void selialize();
+	public abstract void selialize();
 
 	/**
 	 * 파일에 데이터를 입력하는 메소드
@@ -66,7 +41,7 @@ public abstract class Parser {
 	/**
 	 * 역직렬화 메소드
 	 */
-	protected abstract void deSelialize();
+	public abstract void deSelialize();
 
 	/**
 	 * 직렬화된 데이터를 읽어오는 메소드
@@ -75,4 +50,6 @@ public abstract class Parser {
 	 * @param obj
 	 */
 	protected abstract void readEmployee(Employee emp, Object obj);
+	
+	protected abstract void setFileName(String fileName);
 }
