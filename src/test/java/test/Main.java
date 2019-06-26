@@ -21,14 +21,12 @@ public class Main {
 		parser = SerializerFactory.makeSerializer(configReader.getFileFormat());
 
 		FileManager fileManager = new FileManager();
-		fileManager.setFileBaseDir(configReader.getDir());
 		parser.setFileManager(fileManager);
 		parser.setFileName("sawon-v1");
-		parser.getFileManager().getResultMadeFile();
 
 		initiateData.addEmployeeToList();
 		parser.setDataManager(initiateData.getDataManager());
-		parser.getFileManager().makeBaseDirFile();
+		parser.getFileManager().makeBaseDirFile(configReader.getDir());
 		parser.getFileManager().makeResultFile();
 		parser.selialize();
 		parser.deSelialize();

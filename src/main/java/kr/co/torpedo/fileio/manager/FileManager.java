@@ -9,7 +9,6 @@ public class FileManager {
 	private File baseDirFile;
 	private File resultMadeFile;
 	private String fileName;
-	private String fileBaseDirPath;
 
 	public File getResultMadeFile() {
 		return resultMadeFile;
@@ -19,19 +18,11 @@ public class FileManager {
 		this.fileName = fileName;
 	}
 
-	public String getFileBaseDir() {
-		return fileBaseDirPath;
-	}
-
-	public void setFileBaseDir(String dir) {
-		this.fileBaseDirPath = dir;
-	}
-
 	public void makeResultFile() {
-		resultMadeFile = new File(getFileBaseDir() + fileName);
+		resultMadeFile = new File(baseDirFile + fileName);
 	}
 	
-	public void makeBaseDirFile() {
+	public void makeBaseDirFile(String fileBaseDirPath) {
 		baseDirFile = new File(fileBaseDirPath);
 	}
 
