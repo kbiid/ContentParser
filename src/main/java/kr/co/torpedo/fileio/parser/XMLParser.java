@@ -194,7 +194,7 @@ public class XMLParser extends Parser {
 		}
 	}
 
-	public void parsingXmlData(NodeList nodeChildren) {
+	private void parsingXmlData(NodeList nodeChildren) {
 		String name = null, phoneNumber = null, email = null, department = null, term = null;
 		int age = 0;
 		for (int j = 0; j < nodeChildren.getLength(); j++) {
