@@ -155,7 +155,7 @@ public class CSVParser extends Parser {
 	}
 
 	@Override
-	protected void setFileName(String fileName) {
+	public void setFileName(String fileName) {
 		fileManager.setFileName(fileName + ".csv");
 	}
 }

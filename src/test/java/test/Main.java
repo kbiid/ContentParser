@@ -22,9 +22,9 @@ public class Main {
 
 		FileManager fileManager = new FileManager();
 		fileManager.setFileBaseDir(configReader.getDir());
-		fileManager.setFileName("sawon-v1");
-		fileManager.getResultMadeFile();
 		parser.setFileManager(fileManager);
+		parser.setFileName("sawon-v1");
+		parser.getFileManager().getResultMadeFile();
 
 		initiateData.addEmployeeToList();
 		parser.setDataManager(initiateData.getDataManager());
@@ -36,7 +36,7 @@ public class Main {
 
 		initiateData.addEmployeeToList();
 		initiateData.addInternToList();
-		fileManager.setFileName("sawon-v2");
+		parser.setFileName("sawon-v2");
 		parser.getFileManager().makeResultFile();
 		parser.selialize();
 		parser.deSelialize();

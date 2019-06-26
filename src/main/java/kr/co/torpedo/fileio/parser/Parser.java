@@ -51,5 +51,5 @@ public abstract class Parser {
 	 */
 	protected abstract void readEmployee(Employee emp, Object obj);
 	
-	protected abstract void setFileName(String fileName);
+	public abstract void setFileName(String fileName);
 }
