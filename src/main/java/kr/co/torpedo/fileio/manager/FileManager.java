@@ -19,7 +19,7 @@ public class FileManager {
 	}
 
 	public void makeResultFile() {
-		resultMadeFile = new File(baseDirFile + fileName);
+		resultMadeFile = new File(baseDirFile.getAbsolutePath() + "\\"+ fileName);
 	}
 	
 	public void makeBaseDirFile(String fileBaseDirPath) {
